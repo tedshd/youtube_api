@@ -2,8 +2,6 @@
 header('Content-Type: application/json; charset=utf-8');
 define('APIKEY', '');
 
-$id = $_GET['id'] ?? 'Mz8uuWJEJpk';
-
 /**
  * [httpGet curl use get]
  * @param  [type] $url [description]
@@ -20,11 +18,11 @@ function httpGet($url)
     return $output;
 }
 
-function video_info($id='')
+function get_video_categories($id='', $hl='en_US')
 {
-  $api_url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' . $id . '&key=' . APIKEY;
+  $api_url = 'https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&hl=' . $hl . '&id=' . $id . '&key=' . APIKEY;
   return json_decode(httpGet($api_url), true)['items'][0]['snippet'];
 }
 
-echo json_encode(video_info($id));
+echo json_encode(get_video_categories('20', 'zh_TW'));
 ?>
