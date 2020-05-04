@@ -19,7 +19,7 @@ function httpGet($url)
     curl_close($ch);
     return $output;
 }
-
+// https://developers.google.com/youtube/v3/docs/playlistItems/list
 function playlist_items($id='') {
   $api_url = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=' . $id . '&key=' . APIKEY;
   return json_decode(httpGet($api_url), true)['items'][0]['snippet'];
