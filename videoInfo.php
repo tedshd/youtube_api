@@ -26,5 +26,11 @@ function video_info($id='')
   return json_decode(httpGet($api_url), true)['items'][0]['snippet'];
 }
 
+function video_statistics($id='')
+{
+  $api_url = 'https://youtube.googleapis.com/youtube/v3/videos?part=statistics&id=' . $id . '&key=' . APIKEY;
+  return json_decode(httpGet($api_url), true)['items'][0];
+}
+
 echo json_encode(video_info($id));
 ?>
